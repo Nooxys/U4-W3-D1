@@ -1,0 +1,44 @@
+Exercise 1 
+
+SELECT * FROM clienti WHERE nome LIKE 'Mario'
+
+Exercise 2
+
+SELECT * FROM clienti WHERE anno_di_nascita = 1982
+
+Exercise 3
+
+SELECT * FROM fatture WHERE iva  = 20
+
+Exercise 4
+
+SELECT * FROM prodotti WHERE  EXTRACT (YEAR FROM data_attivazione ) = 2017 AND (in_produzione = true OR in_commercio = true)
+
+Exercise 5
+
+SELECT * FROM fatture JOIN clienti USING (cliente_id) WHERE fatture.importo < 1000  
+
+Exercise 6
+
+SELECT fatture_id, importo, iva, data_fattura, fornitori.denominazione FROM fatture JOIN fornitori USING (fornitori_id)
+
+Exercise 7
+
+SELECT COUNT (*), EXTRACT (YEAR FROM data_fattura) from fatture WHERE iva = 20 GROUP BY EXTRACT (YEAR FROM data_fattura)
+
+Exercise 8
+
+SELECT COUNT (*), SUM (importo) from fatture GROUP BY EXTRACT (YEAR FROM data_fattura)
+
+Exercise 9 
+
+SELECT COUNT (*), EXTRACT(YEAR FROM data_fattura) from fatture WHERE tipologia = 'A' GROUP  BY EXTRACT (YEAR FROM data_fattura) HAVING COUNT (*) >2
+
+Exercise 10 
+
+SELECT SUM (importo ), clienti.regione_residenza FROM fatture JOIN clienti USING ( cliente_id) GROUP BY (clienti.regione_residenza)
+
+Exercise 11 
+
+SELECT COUNT (*) FROM clienti JOIN fatture USING (cliente_id) WHERE clienti.anno_di_nascita = '1980' AND fatture.importo > 50 GROUP BY clienti.anno_di_nascita  
+
